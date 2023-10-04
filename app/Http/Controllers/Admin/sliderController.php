@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\DataTables\sliderDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\slider;
 use Illuminate\Http\Request;
@@ -12,10 +13,10 @@ class sliderController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(sliderDataTable $dataTable)
     {
         $slider = slider::first();
-        return view('admin.header.slider.index', compact('slider') ) ;
+        return $dataTable->render('admin.header.slider.index', compact('slider') ) ;
     }
 
     /**
@@ -23,7 +24,7 @@ class sliderController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.header.slider.create');
     }
 
     /**
@@ -31,7 +32,33 @@ class sliderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'image' => ['required', 'max:3000', 'image'],
+        ]);
+
+        if($request->hasFile('image')){
+            $image = $request->file('image');
+            $imageName = rand().$image->getClientOriginalName();
+            $image->move(public_path('/uploads'), $imageName);
+
+            $imagePath = "/uploads/".$imageName;
+        }
+
+        slider::Create(
+            [
+                'image' => isset($imagePath) ? $imagePath : '',
+            ]
+        );
+
+        // $create = new slider();
+        // $create->image= $request->image;
+        // $create ->save();
+
+        toastr()->success('Upload successfully!', 'Congrats!');
+        return redirect()->route('admin.slider.index');
+
+
+
     }
 
     /**

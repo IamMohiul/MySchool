@@ -22,6 +22,8 @@
   <link rel="stylesheet" href="{{ asset ('assets/css/style.css') }}">
   <link rel="stylesheet" href="{{ asset ('assets/css/components.css') }}">
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body>
@@ -80,5 +82,6 @@
         @endif
 
       </script>
+      @stack('scripts')
 </body>
 </html>
