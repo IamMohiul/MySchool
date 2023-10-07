@@ -14,6 +14,9 @@
   <link  rel="stylesheet" type="text/css" href="https://jquery.app/jqueryscripttop.css">
   
   <!-- All Css -->
+  <link  rel="stylesheet" type="text/css" href="{{ asset('frontend/assets/css/owl.carousel.min.css') }}">
+  <link  rel="stylesheet" type="text/css" href="{{ asset('frontend/assets/css/owl.theme.default.min.css') }}">
+
   <link  rel="stylesheet" type="text/css" href="{{ asset('frontend/assets/css/sliderResponsive.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('frontend/assets/css/uikit.min.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('frontend/assets/css/bootstrap.min.css') }}">
@@ -68,6 +71,19 @@
   <script  type="text/javascript" src="{{ asset('frontend/assets/js/sliderResponsive.js')}}"></script>
   <script type="text/javascript" src="{{ asset('frontend/assets/js/main.js')}}"></script>
 
+
+  {{-- owl-carousel Script --}}
+  <script>
+    $(document).ready(function () {
+      $('.owl-carousel').owlCarousel({
+        items: 1, // Number of items to display at once
+        loop: true, // Enable the loop
+        autoplay: true, // Auto-play the carousel
+        autoplayTimeout: 3000, // Auto-play interval in milliseconds
+      });
+    });
+  </script>
+
   <script>
     AOS.init();
     var preloader=document.getElementById('load');
@@ -86,15 +102,15 @@
     $(document).ready(function() {
 
       $("#slider1").sliderResponsive({
-  // Using default everything
-    // slidePause: 5000,
-    // fadeSpeed: 800,
-    // autoPlay: "on",
-    // showArrows: "off",
-    // hideDots: "off",
-    // hoverZoom: "on",
-    // titleBarTop: "off"
-  });
+      // Using default everything
+        // slidePause: 5000,
+        // fadeSpeed: 800,
+        // autoPlay: "on",
+        // showArrows: "off",
+        // hideDots: "off",
+        // hoverZoom: "on",
+        // titleBarTop: "off"
+      });
 
       $("#slider2").sliderResponsive({
         fadeSpeed: 300,

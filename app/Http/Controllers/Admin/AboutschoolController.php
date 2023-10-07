@@ -98,6 +98,6 @@ class AboutschoolController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        
     }
 }

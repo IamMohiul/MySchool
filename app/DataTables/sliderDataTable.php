@@ -26,7 +26,7 @@ class sliderDataTable extends DataTable
             return '<img src="' . asset($slider->image) . '" alt="Slider Image" width="100">';
         })
         ->addColumn('action', function($query){
-            return '<a href="'.route('admin.slider.edit', $query->id).'" Class="btn btn-primary">Edit</a> <a href="'.route('admin.slider.destroy', $query->id).'" Class="btn btn-danger">Delete</a>';
+            return '<a href="'.route('admin.slider.edit', $query->id).'" Class="btn btn-primary"><i class="fas fa-edit"></i></a> <a href="'.route('admin.slider.destroy', $query->id).'" Class="btn btn-danger delete-item"><i class="fas fa-trash"></i></a>';
         })
         ->rawColumns(['image', 'action'])
         ->setRowId('id');
@@ -50,7 +50,7 @@ class sliderDataTable extends DataTable
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     //->dom('Bfrtip')
-                    ->orderBy(1)
+                    ->orderBy(0)
                     ->selectStyleSingle()
                     ->buttons([]);
     }

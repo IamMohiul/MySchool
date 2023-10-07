@@ -1,17 +1,19 @@
 <div class="col-sm-12 col-12 p-0">
     <!--Top Slider Background-->
+
     <div class="slider" id="slider1">
-      <div style="background:linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('frontend/assets/otherimage/slider-01.jpg'); background-position: center; background-size: cover;"></div>
-      {{-- <div style="background:linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('frontend/assets/otherimage/1775045118474611.jpg'); background-position: center; background-size: cover;"></div> --}}
-      {{-- <div style="background:linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('frontend/assets/otherimage/1775045487148905.jpg'); background-position: center; background-size: cover;"></div> --}}
-      {{-- <div style="background:linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('frontend/assets/otherimage/1775045561085415.jpg'); background-position: center; background-size: cover;"></div>      --}}
+
+      @foreach ($slider as $bgslider)
+      <div style="background:linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('{{asset(''.$bgslider->image)}}'); background-position: center; background-size: cover;"></div>
+      @endforeach
+
       <span class="titleBar">
         <a href="/" style="color:yellow; font-size:18px;"><img src="frontend/assets/otherimage/logo.jpg" class="img-fluid rounded">গলাচিপা সরকারি কলেজ</a>
       </span>
     </div>
     <!--Mobile Slider-->
     <div id="carouselExampleIndicators" class="carousel slide d-block d-sm-none" data-ride="carousel">
-      <div class="carousel-inner">   
+      <div class="carousel-inner">
         <div class="carousel-item active">
           <img src="frontend/assets/frontend/otherimage/slider-01.jpg" class="d-block w-100">
         </div>       

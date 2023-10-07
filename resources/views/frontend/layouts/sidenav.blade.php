@@ -1,13 +1,5 @@
 <div class="col-sm-3 col-12">
-    <div class="col-sm-12 col-12 p-0">
-      <ul class="list-group">
-        <li class="list-group-item" id="featureheads">সভাপতির বাণী</li>
-      </ul>
-      <li class="list-group-item p-0 pt-2" id="padd">
-        <a href="/President_Message"><center><img src="frontend/assets/otherimage/" class="img-fluid" style="max-height: 200px;padding-bottom:5px;"></center></a>
-        <center><span class="head">Name<br><a href="/President_Message" class="btn btn-success btn-sm btn-block">বিস্তারিত</a></span></center>
-      </li>
-    </div>
+    {{-- অধ্যক্ষের বাণী --}}
     <div class="col-sm-12 col-12 p-0" style="margin-top:10px;">
       <ul class="list-group">
         <li class="list-group-item" id="featureheads">অধ্যক্ষের বাণী</li>
@@ -17,6 +9,18 @@
         <center><span class="head">মোঃ ফোরকান কবির<br><a href="/Message_head" class="btn btn-success btn-sm btn-block">বিস্তারিত</a></span></center>
       </li>
     </div>
+
+    {{-- উপাধ্যক্ষের বাণী --}}
+    <div class="col-sm-12 col-12 p-0" style="margin-top:10px;">
+      <ul class="list-group">
+        <li class="list-group-item" id="featureheads"> উপাধ্যক্ষের বাণী</li>
+      </ul>
+      <li class="list-group-item p-0 pt-2" id="padd">
+        <a href="/Message_head"><center><img src="{{ asset ('frontend/assets/')}}" class="img-fluid" style="max-height: 200px;padding-bottom:5px;"></center></a>
+        <center><span class="head">উপাধ্যক্ষের<br><a href="/Message_head" class="btn btn-success btn-sm btn-block">বিস্তারিত</a></span></center>
+      </li>
+    </div>
+
     <div class="col-sm-12 col-12 p-0 mt-3" data-aos="fade-in" data-aos-duration="1000">
       <ul class="list-group">
         <li class="list-group-item" id="featureheads">গুরুত্বপূর্ণ লিংক</li>

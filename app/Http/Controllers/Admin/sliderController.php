@@ -50,14 +50,8 @@ class sliderController extends Controller
             ]
         );
 
-        // $create = new slider();
-        // $create->image= $request->image;
-        // $create ->save();
-
         toastr()->success('Upload successfully!', 'Congrats!');
         return redirect()->route('admin.slider.index');
-
-
 
     }
 
@@ -74,7 +68,9 @@ class sliderController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $edit = slider::findOrFail($id);
+
+        return view('admin.header.slider.edit' ,compact('edit'));
     }
 
     /**
@@ -83,62 +79,34 @@ class sliderController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'image1' => ['image'],
-            'image2' => ['image'],
-            'image3' => ['image'],
+            'image' => ['required', 'max:3000', 'image'],
         ]);
 
-        if($request->hasFile('image1')){
-            $slider = slider::first();
-            if($slider && File::exists(public_path($slider->image))){
+        $slider = slider::findOrFail($id);
+
+        if($request->hasFile('image')){
+            // $slider = slider::first();
+            // if($slider && File::exists(public_path($slider->image))){
+            //     File::delete(public_path($slider->image));
+            // }
+            if (File::exists(public_path($slider->image))) {
                 File::delete(public_path($slider->image));
             }
 
-            $image = $request->file('image1');
+
+            $image = $request->file('image');
             $imageName = rand().$image->getClientOriginalName();
             $image->move(public_path('/uploads'), $imageName);
 
             $imagePath = "/uploads/".$imageName;
         }
 
-        if($request->hasFile('image2')){
-            $slider = slider::first();
-            if($slider && File::exists(public_path($slider->image))){
-                File::delete(public_path($slider->image));
-            }
+        $slider->update([
+            'image' => isset($imagePath) ? $imagePath : '',
+        ]);
 
-            $image = $request->file('image2');
-            $imageName = rand().$image->getClientOriginalName();
-            $image->move(public_path('/uploads'), $imageName);
-
-            $imagePath = "/uploads/".$imageName;
-        }
-
-        if($request->hasFile('image3')){
-            $slider = slider::first();
-            if($slider && File::exists(public_path($slider->image))){
-                File::delete(public_path($slider->image));
-            }
-
-            $image = $request->file('image3');
-            $imageName = rand().$image->getClientOriginalName();
-            $image->move(public_path('/uploads'), $imageName);
-
-            $imagePath = "/uploads/".$imageName;
-        }
-
-        slider::updateOrCreate(
-            ['id' => $id],
-            [
-                'image1' => isset($imagePath) ? $imagePath : '',
-                'image2' => isset($imagePath) ? $imagePath : '',
-                'image3' => isset($imagePath) ? $imagePath : '',
-
-            ]
-        );
-
-        toastr()->success('Update successfully!', 'Congrats!');
-        return redirect()->back();
+        toastr()->success('Upload successfully!', 'Congrats!');
+        return redirect()->route('admin.slider.index');
     }
 
     /**
@@ -146,6 +114,7 @@ class sliderController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $delete = slider::findOrFail($id);
+        $delete->delete();
     }
 }

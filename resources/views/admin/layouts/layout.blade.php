@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
   <title>Dashboard</title>
 
   <!-- General CSS Files -->
@@ -17,13 +18,13 @@
   <link rel="stylesheet" href="{{ asset ('assets/css/plugins/bootstrap-timepicker.min.css') }}">
   <link rel="stylesheet" href="{{ asset ('assets/css/plugins/daterangepicker.css') }}">
   <link rel="stylesheet" href="{{ asset ('assets/css/plugins/select2.min.css') }}">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
 
   <!-- Template CSS -->
   <link rel="stylesheet" href="{{ asset ('assets/css/style.css') }}">
   <link rel="stylesheet" href="{{ asset ('assets/css/components.css') }}">
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
-  @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body>
@@ -72,6 +73,14 @@
     <!-- Page Specific JS File -->
     <script src="{{ asset ('assets/js/page/forms-advanced-forms.js') }}"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+    {{-- AJax Csrf Tocken  --}}
+    <script type="text/javascript">
+      
+      </script>
+      
     <!-- Show Dynamic Validation Error -->
       <script>
 
@@ -82,6 +91,52 @@
         @endif
 
       </script>
+
+      <script>
+        $(document).ready(function(){
+          // AJax Csrf Tocken 
+          $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+          });
+
+          // Sweet Alert for Delete
+
+          $('body').on('click', '.delete-item', function(e){
+            e.preventDefault();
+            let deleteUrl = $(this).attr('href');
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  $.ajax({
+                    type: 'DELETE',
+                    url: deleteUrl,
+                    success: function(data){
+                      Swal.fire(
+                        'Deleted!',
+                        'Your Image has been deleted.',
+                        'success'
+                      )
+                      window.location.reload();
+                    },
+                    error: function(xhr, status, error){
+                      console.log(error);
+                    }
+                  })
+                }
+              })
+          })
+        })
+      </script>
+
       @stack('scripts')
 </body>
 </html>
