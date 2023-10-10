@@ -48,9 +48,8 @@
               <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Notice</span></a>
                 <ul class="dropdown-menu" style="display: none;">
-                  <li><a class="nav-link" href="">সকল নোটিশ</a></li>
-                  <li><a class="nav-link" href="">সময়সূচী</a></li>
-                  <li><a class="nav-link" href="">পরীক্ষার ফলাফল</a></li>
+                  <li><a class="nav-link" href="{{ route('admin.Ncatagory.index') }}">নোটিশ ক্যাটাগরি</a></li>
+                  <li><a class="nav-link" href="{{ route('admin.Notice.index') }}">নোটিশ</a></li>
                 </ul>
               </li>
 
@@ -75,7 +74,7 @@
                   <li><a class="nav-link" href="{{ route ('admin.Teaching.index') }}">পাঠদানের অনুমতি ও স্বীকৃতি</a></li>
                   <li><a class="nav-link" href="{{ route ('admin.Mpo.index') }}">এমপিও/জাতীয়করণ তথ্য</a></li>
                   <li><a class="nav-link" href="{{ route ('admin.Infrastructure.index') }}">ভৌত অবকাঠামো</a></li>
-                  <li><a class="nav-link" href={{ route ('admin.Yearlywork.index') }}"">বার্ষিক কর্ম পরিকল্পনা</a></li>
+                  <li><a class="nav-link" href="{{ route ('admin.Yearlywork.index') }}">বার্ষিক কর্ম পরিকল্পনা</a></li>
                   <li><a class="nav-link" href="{{ route ('admin.Headintro.index') }}">প্রধান শিক্ষক পরিচিতি</a></li>
                   <li><a class="nav-link" href="{{ route ('admin.Contact.index') }}">যোগাযোগের ঠিকানা</a></li>
                 </ul>

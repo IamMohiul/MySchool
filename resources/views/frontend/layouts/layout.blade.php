@@ -4,15 +4,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>গলাচিপা সরকারি কলেজ</title>
-  <link rel="icon" href="frontend/assets/otherimage/1741230812922136.png" type="image/gif" sizes="16x16">
+  <link rel="icon" href="frontend/assets/otherimage/logo.jpg" type="image/gif" sizes="16x16">
 
+  {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
   <!-- CDN CSS -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <link  rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link  rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@500;600;700&amp;display=swap">
   <link  rel="stylesheet" type="text/css" href="https://fonts.maateen.me/adorsho-lipi/font.css">
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+  {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css"> --}}
   <link  rel="stylesheet" type="text/css" href="https://jquery.app/jqueryscripttop.css">
-  
+
+
   <!-- All Css -->
   <link  rel="stylesheet" type="text/css" href="{{ asset('frontend/assets/css/owl.carousel.min.css') }}">
   <link  rel="stylesheet" type="text/css" href="{{ asset('frontend/assets/css/owl.theme.default.min.css') }}">
@@ -21,6 +24,7 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('frontend/assets/css/uikit.min.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('frontend/assets/css/bootstrap.min.css') }}">
   <link  rel="stylesheet" type="text/css" href="{{ asset('frontend/assets/css/bootstrap-4-navbar.css') }}">
+
   <link rel="stylesheet" type="text/css" href="{{ asset('frontend/assets/css/style.css') }}">
 
 </head>
@@ -62,7 +66,7 @@
 
   <script type="text/javascript" src="{{ asset('frontend/assets/js/jquery-3.3.1.min.js')}}"></script>
   <script type="text/javascript" src="{{ asset('frontend/assets/js/bootstrap.min.js')}}"></script>
-  <script  type="text/javascript" src="{{ asset('frontend/assets/js/bootstrap-4-navbar.html')}}"></script>
+  {{-- <script  type="text/javascript" src="{{ asset('frontend/assets/js/bootstrap-4-navbar.html')}}"></script> --}}
   <script type="text/javascript" src="{{ asset('frontend/assets/js/owl.carousel.min.js')}}"></script>
   <script type="text/javascript" src="{{ asset('frontend/assets/js/jquery.nivo.slider.js')}}"></script>
   <script type="text/javascript" src="{{ asset('frontend/assets/js/uikit.min.js')}}"></script>
@@ -84,7 +88,7 @@
     });
   </script>
 
-  <script>
+  {{-- <script>
     AOS.init();
     var preloader=document.getElementById('load');
     function myfunctions() {
@@ -94,9 +98,7 @@
     $(document).ready(function() {
       $('#example').DataTable();
     } );
-
-
-  </script>
+  </script> --}}
 
   <script>
     $(document).ready(function() {
@@ -127,11 +129,11 @@
     });
   </script>
 
-  <script type="text/javascript">
+  {{-- <script type="text/javascript">
     $(document).ready(function() {
       $('#example').DataTable();
     } );
-  </script>
-
+  </script> --}}
+  @stack('scripts')
 </body>
 </html>

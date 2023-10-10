@@ -36,6 +36,8 @@ use App\Http\Controllers\Admin\ManagingcomController;
 use App\Http\Controllers\Admin\MessageheadController;
 use App\Http\Controllers\Admin\MissionController;
 use App\Http\Controllers\Admin\MpoController;
+use App\Http\Controllers\Admin\NcatagoryController;
+use App\Http\Controllers\Admin\noticeController;
 use App\Http\Controllers\Admin\PhotogalController;
 use App\Http\Controllers\Admin\PresidentmsgController;
 use App\Http\Controllers\Admin\PrinciplelistController;
@@ -60,8 +62,10 @@ use App\Http\Controllers\Frontend\HeadmessageController;
 use App\Http\Controllers\Frontend\HistoryController as FrontendHistoryController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\InfrastructureController as FrontendInfrastructureController;
+use App\Http\Controllers\Frontend\layoutController;
 use App\Http\Controllers\Frontend\MissionvissionController;
 use App\Http\Controllers\Frontend\MpoinfoController;
+use App\Http\Controllers\Frontend\NoticeshowController;
 use App\Http\Controllers\Frontend\PresidentController;
 use App\Http\Controllers\Frontend\TeachingController as FrontendTeachingController;
 use App\Http\Controllers\ProfileController;
@@ -79,35 +83,27 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index']) -> name('Home');
+Route::get('/Notice', [NoticeshowController::class, 'index']) -> name('Notice');
+Route::get('/layout', [layoutController::class, 'index']) -> name('Layout');
 
 // About Section
 
 Route::get('/About_school', [FrontendAboutschoolController::class, 'index'])->name('About_School');
-
 Route::get('/Mission_vission', [MissionvissionController::class, 'index'])->name('Mission_vission');
-
 Route::get('/History', [FrontendHistoryController::class, 'index'])->name('History');
-
 Route::get('/Citizen_charter', [CitizenController::class, 'index'])->name('Citizen');
-
 Route::get('/Teaching_permission', [FrontendTeachingController::class, 'index'])->name('Teaching');
-
 Route::get('/Mpo_info', [MpoinfoController::class, 'index']);
-
 Route::get('/Infrastructure', [FrontendInfrastructureController::class, 'index']);
-
 Route::get('/Yearly_working_plan', function () {
     return view('frontend.about.Yearly_working_plan');
 });
-
 Route::get('/Head_intro', function () {
     return view('frontend.about.Head_intro');
 });
-
 Route::get('/Contact_us', function () {
     return view('frontend.about.Contact_us');
 });
-
 // Administrative information
 
 Route::get('/President_Message', [PresidentController::class, 'index']);
@@ -309,6 +305,11 @@ Route::group (['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'],
     //Header
     Route::resource('slider', sliderController::class);
 
+    //Notice
+    Route::resource('Ncatagory', NcatagoryController::class);
+    Route::resource('Notice', noticeController::class);
+
+
     // About Section
     Route::resource('About_school', AboutschoolController::class);
     Route::resource('Mission_vission', MissionController::class);
@@ -317,14 +318,15 @@ Route::group (['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'],
     Route::resource('Teaching', TeachingController::class);
     Route::resource('Mpo', MpoController::class);
     Route::resource('Infrastructure', InfrastructureController::class);
-
     Route::resource('Yearlywork', YearlyworkController::class);
+
     Route::resource('Headintro', HeadintroController::class);
     Route::resource('Contact', ContactController::class);
 
     // Administrative information
     Route::resource('Presidentmsg', PresidentmsgController::class);
     Route::resource('Messagehead', MessageheadController::class);
+    
     Route::resource('Managingcom', ManagingcomController::class);
     Route::resource('Chairmanlist', ChairmanlistController::class);
     Route::resource('Principlelist', PrinciplelistController::class);

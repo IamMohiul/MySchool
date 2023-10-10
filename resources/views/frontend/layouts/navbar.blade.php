@@ -3,29 +3,32 @@
 
     <div class="slider" id="slider1">
 
-      @foreach ($slider as $bgslider)
+      {{-- @foreach ($slider as $bgslider)
       <div style="background:linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('{{asset(''.$bgslider->image)}}'); background-position: center; background-size: cover;"></div>
-      @endforeach
+      @endforeach --}}
 
       <span class="titleBar">
-        <a href="/" style="color:yellow; font-size:18px;"><img src="frontend/assets/otherimage/logo.jpg" class="img-fluid rounded">গলাচিপা সরকারি কলেজ</a>
+        <a href="/" style="color:yellow; font-size:18px;">
+          <table class="">
+            <tr >
+              <th rowspan="2" class="mx-4"><img src="{{ asset('frontend/assets/otherimage/logo.jpg') }}" class="img-fluid rounded"></th>
+              <td class="mx-4">গলাচিপা সরকারি কলেজ</td>
+            </tr>
+            <tr>
+              <td class="mx-4">Golachipa Govt. College</td>
+            </tr>
+          </table>
+        </a>
       </span>
     </div>
     <!--Mobile Slider-->
-    <div id="carouselExampleIndicators" class="carousel slide d-block d-sm-none" data-ride="carousel">
+    {{-- <div id="carouselExampleIndicators" class="carousel slide d-block d-sm-none" data-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="frontend/assets/frontend/otherimage/slider-01.jpg" class="d-block w-100">
+          @foreach ($slider as $bgslider)
+          <img src="{{asset($bgslider->image)}}" class="d-block w-100">
+          @endforeach
         </div>       
-        {{-- <div class="carousel-item">
-          <img src="frontend/assets/otherimage/1775045118474611.jpg" class="d-block w-100">
-        </div> --}}
-        {{-- <div class="carousel-item">
-          <img src="frontend/assets/otherimage/1775045487148905.jpg" class="d-block w-100">
-        </div> --}}
-        {{-- <div class="carousel-item">
-          <img src="frontend/assets/otherimage/1775045561085415.jpg" class="d-block w-100">
-        </div> --}}
       </div>
       <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -35,7 +38,7 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
       </a>
-    </div><!-----End Mobile Slider------>
+    </div><!-----End Mobile Slider------> --}}
   </div><!-------End Slider----->
   <!--Nav Bar-->
   <nav class="navbar navbar-expand-lg navbar-light btco-hover-menu menubar" style="background: #fff; border-bottom: 1px solid #e5e5e5; padding: 0px; box-shadow: 0 1px 5px -2px #999;">
@@ -191,3 +194,5 @@
       </ul>
     </div>
   </nav><!-- End Navbar -->
+
+  

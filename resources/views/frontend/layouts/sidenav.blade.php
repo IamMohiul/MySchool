@@ -16,8 +16,8 @@
         <li class="list-group-item" id="featureheads"> উপাধ্যক্ষের বাণী</li>
       </ul>
       <li class="list-group-item p-0 pt-2" id="padd">
-        <a href="/Message_head"><center><img src="{{ asset ('frontend/assets/')}}" class="img-fluid" style="max-height: 200px;padding-bottom:5px;"></center></a>
-        <center><span class="head">উপাধ্যক্ষের<br><a href="/Message_head" class="btn btn-success btn-sm btn-block">বিস্তারিত</a></span></center>
+        <a href="/Message_head"><center><img src="{{ asset ('frontend/assets/otherimage/AssistHead.png')}}" class="img-fluid" style="max-height: 200px;padding-bottom:5px;"></center></a>
+        <center><span class="head">উপাধ্যক্ষ<br><a href="/Message_head" class="btn btn-success btn-sm btn-block">বিস্তারিত</a></span></center>
       </li>
     </div>
 

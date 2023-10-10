@@ -9,7 +9,6 @@ body{
 	margin: 0; 
   font-family: 'Baloo Chettan 2','AdorshoLipi', cursive;
   overflow-x: hidden;
-  background-image: url(img/White_Background-01.jpg);
   background-attachment: fixed;
 }
 
@@ -119,7 +118,6 @@ html{
 }
 
 .cnotice{
-  background: url("img/welcome_grad.png") repeat-x
   scroll left top transparent;
   border:1px solid #e5e5e5;
   background-position: center;
@@ -994,4 +992,44 @@ p#est
       font-size: 11px;
       margin-top: -18px !important;
   }
+}
+
+
+/***** Gallery *****/
+ 
+.gallery-box {
+  padding-top: 30px;
+}
+.gallery-box img {
+  cursor: pointer;
+}
+
+.carousel .carousel-indicators {
+  bottom: -20px;
+}
+.carousel .carousel-indicators li {
+  width: 16px;
+  height: 16px;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-radius: 50%;
+  background-color: #5a6268;
+}
+
+.carousel .carousel-inner {
+  padding-bottom: 40px;
+}
+
+.carousel .carousel-control-next, 
+.carousel .carousel-control-prev {
+  top: auto;
+  border: 0;
+}
+
+.carousel .carousel-control-prev-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%235a6268' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath d='M5.25 0l-4 4 4 4 1.5-1.5L4.25 4l2.5-2.5L5.25 0z'/%3e%3c/svg%3e");
+}
+
+.carousel .carousel-control-next-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%235a6268' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath d='M2.75 0l-1.5 1.5L3.75 4l-2.5 2.5L2.75 8l4-4-4-4z'/%3e%3c/svg%3e");
 }
