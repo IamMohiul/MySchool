@@ -3,19 +3,19 @@
 
     <div class="slider" id="slider1">
 
-      {{-- @foreach ($slider as $bgslider)
+      @foreach ($slider as $bgslider)
       <div style="background:linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('{{asset(''.$bgslider->image)}}'); background-position: center; background-size: cover;"></div>
-      @endforeach --}}
+      @endforeach
 
       <span class="titleBar">
         <a href="/" style="color:yellow; font-size:18px;">
-          <table class="">
+          <table>
             <tr >
-              <th rowspan="2" class="mx-4"><img src="{{ asset('frontend/assets/otherimage/logo.jpg') }}" class="img-fluid rounded"></th>
-              <td class="mx-4">গলাচিপা সরকারি কলেজ</td>
+              <th rowspan="2" class="mx-4" style="padding-right: 30px;"><img src="{{ asset('frontend/assets/otherimage/logo.png') }}" class="img-fluid rounded"></th>
+              <td class="mx-4 custom-title">গলাচিপা সরকারি কলেজ</td>
             </tr>
             <tr>
-              <td class="mx-4">Golachipa Govt. College</td>
+              <td class="mx-4 custom-title" >Golachipa Govt. College</td>
             </tr>
           </table>
         </a>
@@ -58,16 +58,16 @@
               <div class="row">
                 <div class="col-md-6">
                     <li><a href="/About_school">প্রতিষ্ঠান সম্পর্কে</a></li>
-                    <li><a href="/Mission_vission">লক্ষ্য এবং উদ্দেশ্য</a></li>
-                    <li><a href="/History">ইতিহাস</a></li>
-                    <li><a href="/Citizen_charter">সিটিজেন চার্টার</a></li>
+                    {{-- <li><a href="/Mission_vission">লক্ষ্য এবং উদ্দেশ্য</a></li> --}}
+                    {{-- <li><a href="/History">ইতিহাস</a></li> --}}
+                    {{-- <li><a href="/Citizen_charter">সিটিজেন চার্টার</a></li> --}}
                     <li><a href="/Teaching_permission">পাঠদানের অনুমতি ও স্বীকৃতি</a></li>
                     <li><a href="/Mpo_info">এমপিও/জাতীয়করণ তথ্য</a></li>
                 </div>
                 <div class="col-md-6">
                   <li><a href="/Infrastructure">ভৌত অবকাঠামো</a></li>
                   <li><a href="/Yearly_working_plan">বার্ষিক কর্ম পরিকল্পনা</a></li>
-                  <li><a href="/Head_intro">প্রধান শিক্ষক পরিচিতি</a></li>
+                  {{-- <li><a href="/Head_intro">প্রধান শিক্ষক পরিচিতি</a></li> --}}
                   <li><a href="/Contact_us">যোগাযোগের ঠিকানা</a></li>
                 </div>
               </div>
@@ -78,13 +78,14 @@
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">প্রশাসনিক তথ্য</a>
             <ul class="dropdown-menu pb-3 bg-white" aria-labelledby="navbarDropdownMenuLink">
               <div class="col-md-12 col-12 dmenu mt-3">
-                <li><a href="/President_Message">সভাপতির বাণী</a></li>
-                <li><a href="/Message_head">প্রধান শিক্ষকের বাণী</a></li>
-                <li><a href="/Managing_comittee">পরিচালনা পর্ষদ তথ্য</a></li>
-                <li><a href="/Chairman_list">সভাপতির তালিকা</a></li>
-                <li><a href="/Principle_list">প্রধান শিক্ষকদের তালিকা</a></li>
-                <li><a href="/Donars_list">দাতা সদস্যদের তালিকা</a></li>
-                <li><a href="/Ex_member_list">প্রাক্তন সদস্যদের তালিকা</a></li>
+                {{-- <li><a href="/President_Message">সভাপতির বাণী</a></li> --}}
+                <li><a href="/Head_intro">অধ্যক্ষ পরিচিতি</a></li>
+                <li><a href="/Principle_list"> অধ্যক্ষদের তালিকা</a></li>
+                <li><a href="/Message_head">অধ্যক্ষের বাণী</a></li>
+                {{-- <li><a href="/Managing_comittee">পরিচালনা পর্ষদ তথ্য</a></li> --}}
+                {{-- <li><a href="/Chairman_list">সভাপতির তালিকা</a></li> --}}
+                {{-- <li><a href="/Donars_list">দাতা সদস্যদের তালিকা</a></li> --}}
+                {{-- <li><a href="/Ex_member_list">প্রাক্তন সদস্যদের তালিকা</a></li> --}}
               </div>
             </ul>
         </li>
@@ -103,12 +104,11 @@
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">শিক্ষার্থীর তথ্য</a>
             <ul class="dropdown-menu pb-3 bg-white" aria-labelledby="navbarDropdownMenuLink">
               <div class="col-md-12 col-12 dmenu mt-3">
-                <li><a href="/gender_based">শ্রেণী ও লিঙ্গ ভিত্তিক শিক্ষার্থী তথ্য</a></li>
-                <li><a href="/class6">৬ষ্ঠ শ্রেণী শিক্ষার্থী তথ্য</a></li>
-                <li><a href="/class7">৭ম শ্রেণী শিক্ষার্থী তথ্য</a></li>
-                <li><a href="/class8">৮ম শ্রেণী শিক্ষার্থী তথ্য</a></li>
-                <li><a href="/class9">৯ম শ্রেণী শিক্ষার্থী তথ্য</a></li>
-                <li><a href="/class10">১০ম শ্রেণী শিক্ষার্থী তথ্য</a></li>
+                @foreach ($navigationMenus as $menu)
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ $menu->menu_url }}">{{ $menu->menu_name }}</a>
+                </li>
+                @endforeach
               </div>
             </ul>
         </li>
@@ -183,8 +183,8 @@
           <ul class="dropdown-menu pb-3 bg-white" aria-labelledby="navbarDropdownMenuLink" style="min-width:180px;">
             <div class="col-md-12 col-12 dmenu mt-3">
               <li><a href="/Photo_gallery">ফটো গ্যালারী</a></li>
-              <li><a href="/Video_gallery">ভিডিও গ্যালারী</a></li>
-              <li><a href="/Magazine">ম্যাগাজিন</a></li>
+              {{-- <li><a href="/Video_gallery">ভিডিও গ্যালারী</a></li> --}}
+              {{-- <li><a href="/Magazine">ম্যাগাজিন</a></li> --}}
             </div>
           </ul>
         {{-- </li>

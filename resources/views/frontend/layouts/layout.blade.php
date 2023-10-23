@@ -28,15 +28,11 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('frontend/assets/css/style.css') }}">
 
 </head>
-<style>
-    
-</style>
+
 <body>
   <div class="container">
     <div class="col-sm-12 col-12 bg-white pt-2">
-
       @include('frontend.layouts.navbar')
-
     </div>
   </div><!-------------------End Container-------------------->
 
@@ -51,6 +47,7 @@
       </div>   
     </div><!-----------------------End sidebar---------------------->
   </div><!-------End Container----------->
+
 @include('frontend.layouts.footer')
 
 

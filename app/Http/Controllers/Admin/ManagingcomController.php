@@ -34,6 +34,8 @@ class ManagingcomController extends Controller
             'image' => ['image', 'max:5000'],
             'title' => ['required', 'max:200'],
             'position' => ['required', 'max:200'],
+            'mobile' => ['required','regex:/^01[0-9]{9}$/'],
+            'email' => ['max:200'],
         ]);
 
         $filePath = handleUpload('image');
@@ -42,10 +44,12 @@ class ManagingcomController extends Controller
         $Managingcom->title = $request->title;
         $Managingcom->position = $request->position;
         $Managingcom->image = $filePath;
+        $Managingcom->mobile = $request->mobile;
+        $Managingcom->email = $request->email;
         $Managingcom->save();
 
 
-        toastr()->success('Notice Created successfully!', 'Congrats!');
+        toastr()->success('Member Added successfully!', 'Congrats!');
         return redirect()->route('admin.Managingcom.index');
     }
 
@@ -61,8 +65,9 @@ class ManagingcomController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
-    {
-        //
+    {   
+        $Managingcom = Managingcom::findOrFail($id);
+        return view('admin.administrative.Managingcom.edit', compact('Managingcom'));
     }
 
     /**
@@ -70,7 +75,36 @@ class ManagingcomController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'image' => ['image', 'max:5000'],
+            'title' => ['required', 'max:200'],
+            'position' => ['max:200'],
+        ]);
+
+        $Managingcom = Managingcom::findOrFail($id);
+
+        $previousFilePath = $Managingcom->image; // Store the previous file path
+
+        // Check if a new file is uploaded
+        if ($request->hasFile('image')) {
+            $filePath = handleUpload('image', $Managingcom);
+            $Managingcom->image = $filePath;
+            
+            // Delete the previous file
+            if (\File::exists(public_path($previousFilePath))) {
+                \File::delete(public_path($previousFilePath));
+            }
+        }
+
+        $Managingcom->title = $request->title;
+        $Managingcom->position = $request->position;
+        $Managingcom->mobile = $request->mobile;
+        $Managingcom->email = $request->email;
+        $Managingcom->save();
+
+
+        toastr()->success('Member edited successfully!', 'Congrats!');
+        return redirect()->route('admin.Managingcom.index');
     }
 
     /**
@@ -78,6 +112,8 @@ class ManagingcomController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $Managingcom = Managingcom::findOrFail($id);
+        deleteFileIfExist($Managingcom->image);
+        $Managingcom->delete();
     }
 }

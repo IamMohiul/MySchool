@@ -9,8 +9,28 @@
       </ul>
       <li class="list-group-item">
         <div style="font-size: 14px; line-height: 25px; text-align: justify;">
-            <h1> This is Heading</h1>
-            <p>This is a paragraph.</p>
+        @if ($Yearlywork && count($Yearlywork) > 0)
+          <table class="table text-center">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Date</th>
+                    <th>Download</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach ($Yearlywork as $item)
+              <tr>
+                <td>{{ $item ->title}}</td>
+                <td>{{ $item ->created_at}}</td>
+                <td><a href="{{ asset($item->npdf) }}" download="{{ $item->npdf }}"><i class="fas fa-file-pdf"></i></a></td>
+              </tr>
+            @endforeach
+            </tbody>
+        </table>
+        @else
+        <p>No Yearly Work data available.</p>
+        @endif
        </div>
      </li>
    </div>

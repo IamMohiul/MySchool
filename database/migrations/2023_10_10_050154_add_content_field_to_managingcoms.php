@@ -24,7 +24,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('managingcoms', function (Blueprint $table) {
-            $table->dropColumn(['title','npdf']);
+            $table->dropColumn(['image','title', 'position']);
         });
     }
 };

@@ -9,8 +9,12 @@
       </ul>
       <li class="list-group-item">
         <div style="font-size: 14px; line-height: 25px; text-align: justify;">
-            <h1> This is Heading</h1>
-            <p>This is a paragraph.</p>
+              @if ($Fees->image)
+                <div class="text-center">
+                  <img src="{{ asset($Fees->image) }}" alt="">
+                </div>
+              @endif
+            <p>{!! $Fees->content !!}</p>
        </div>
      </li>
    </div>

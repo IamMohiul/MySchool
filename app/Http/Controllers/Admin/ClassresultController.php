@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\DataTables\ClassresultDataTable;
 use App\Http\Controllers\Controller;
+use App\Models\Classresult;
 use Illuminate\Http\Request;
 
 class ClassresultController extends Controller
@@ -10,9 +12,9 @@ class ClassresultController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(ClassresultDataTable $dataTable)
     {
-        //
+        return $dataTable->render('admin.Results.Classresult.index');
     }
 
     /**
@@ -20,7 +22,7 @@ class ClassresultController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.Results.Classresult.create');
     }
 
     /**
@@ -28,7 +30,21 @@ class ClassresultController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => ['required', 'max:200'],
+            'npdf' => ['mimes:pdf,csv,xlsx,txt,docx,doc,xls', 'required']
+        ]);
+
+        $filePath = handleUpload('npdf');
+
+        $Classresult = new Classresult();
+        $Classresult->title = $request->title;
+        $Classresult->npdf = $filePath;
+        $Classresult->save();
+
+
+        toastr()->success('Files Created successfully!', 'Congrats!');
+        return redirect()->route('admin.Classresult.index');
     }
 
     /**
@@ -44,7 +60,8 @@ class ClassresultController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $Classresult = Classresult::findOrFail($id);
+        return view('admin.Results.Classresult.edit', compact('Classresult'));
     }
 
     /**
@@ -52,7 +69,32 @@ class ClassresultController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'title' => ['required', 'max:200'],
+            'npdf' => ['mimes:pdf,csv,xlsx,txt,docx,doc,xls']
+        ]);
+        
+        $Classresult = Classresult::findOrFail($id);
+
+        // $filePath = handleUpload('npdf');
+        $previousFilePath = $Classresult->npdf; // Store the previous file path
+
+        // Check if a new file is uploaded
+        if ($request->hasFile('npdf')) {
+            $filePath = handleUpload('npdf', $Classresult);
+            $Classresult->npdf = $filePath;
+            
+            // Delete the previous file
+            if (\File::exists(public_path($previousFilePath))) {
+                \File::delete(public_path($previousFilePath));
+            }
+        }
+        
+        $Classresult->title = $request->title;
+        $Classresult->save();
+
+        toastr()->success('File Updated successfully!', 'Congrats!');
+        return redirect()->route('admin.Classresult.index');
     }
 
     /**
@@ -60,6 +102,8 @@ class ClassresultController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $Classresult = Classresult::findOrFail($id);
+        deleteFileIfExist($Classresult->npdf);
+        $Classresult->delete();
     }
 }

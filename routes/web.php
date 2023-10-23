@@ -4,15 +4,12 @@ use App\Http\Controllers\Admin\AboutschoolController;
 use App\Http\Controllers\Admin\AdmresultController;
 use App\Http\Controllers\Admin\AdmrulesController;
 use App\Http\Controllers\Admin\AdmsyllabusController;
+use App\Http\Controllers\Admin\AssheadintroController;
 use App\Http\Controllers\Admin\CabinetController;
 use App\Http\Controllers\Admin\CalenderController;
 use App\Http\Controllers\Admin\ChairmanlistController;
 use App\Http\Controllers\Admin\CitizencharterConroller;
-use App\Http\Controllers\Admin\class10Controller;
-use App\Http\Controllers\Admin\class6Controller;
-use App\Http\Controllers\Admin\class7Controller;
-use App\Http\Controllers\Admin\class8Controller;
-use App\Http\Controllers\Admin\class9Controller;
+use App\Http\Controllers\Admin\classmakeController;
 use App\Http\Controllers\Admin\ClassresultController;
 use App\Http\Controllers\Admin\ClsroutineController;
 use App\Http\Controllers\Admin\ContactController;
@@ -20,12 +17,12 @@ use App\Http\Controllers\Admin\CrescentController;
 use App\Http\Controllers\Admin\CulturalController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DebateController;
+use App\Http\Controllers\Admin\DescriptionController;
 use App\Http\Controllers\Admin\DonarslistController;
 use App\Http\Controllers\Admin\ExamroutineController;
 use App\Http\Controllers\Admin\ExamrulesController;
 use App\Http\Controllers\Admin\ExlistController;
 use App\Http\Controllers\Admin\FeesController;
-use App\Http\Controllers\Admin\genderbController;
 use App\Http\Controllers\Admin\HeadintroController;
 use App\Http\Controllers\Admin\HistoryController;
 use App\Http\Controllers\Admin\HolidayController;
@@ -45,9 +42,11 @@ use App\Http\Controllers\Admin\ProspectsController;
 use App\Http\Controllers\Admin\RulesregController;
 use App\Http\Controllers\Admin\SciencefairController;
 use App\Http\Controllers\Admin\ScoutsController;
+use App\Http\Controllers\Admin\sectionmakeController;
 use App\Http\Controllers\Admin\sliderController;
 use App\Http\Controllers\Admin\SportsController;
 use App\Http\Controllers\Admin\StaffController;
+use App\Http\Controllers\Admin\StudentsController;
 use App\Http\Controllers\Admin\StudytourController;
 use App\Http\Controllers\Admin\SuggestionController;
 use App\Http\Controllers\Admin\SyllabasController;
@@ -57,17 +56,56 @@ use App\Http\Controllers\Admin\UniformController;
 use App\Http\Controllers\Admin\VideogalController;
 use App\Http\Controllers\Admin\YearlyworkController;
 use App\Http\Controllers\Frontend\AboutschoolController as FrontendAboutschoolController;
+use App\Http\Controllers\Frontend\AcalenderController;
+use App\Http\Controllers\Frontend\AdmissionresultController;
+use App\Http\Controllers\Frontend\AdmissionrulesController;
+use App\Http\Controllers\Frontend\AdmissionsyllabusController;
+use App\Http\Controllers\Frontend\ChairmansController;
 use App\Http\Controllers\Frontend\CitizenController;
+use App\Http\Controllers\Frontend\classmenuController;
+use App\Http\Controllers\Frontend\ClassresultController as FrontendClassresultController;
+use App\Http\Controllers\Frontend\ClassroutineController;
+use App\Http\Controllers\Frontend\ContactController as FrontendContactController;
+use App\Http\Controllers\Frontend\CultureController;
+use App\Http\Controllers\Frontend\DebateController as FrontendDebateController;
+use App\Http\Controllers\Frontend\DonarsController;
+use App\Http\Controllers\Frontend\ExamroutineController as FrontendExamroutineController;
+use App\Http\Controllers\Frontend\ExamrulesController as FrontendExamrulesController;
+use App\Http\Controllers\Frontend\ExmemberController;
+use App\Http\Controllers\Frontend\FeesController as FrontendFeesController;
+use App\Http\Controllers\Frontend\Headinfo;
+use App\Http\Controllers\Frontend\HeadinfoController;
 use App\Http\Controllers\Frontend\HeadmessageController;
 use App\Http\Controllers\Frontend\HistoryController as FrontendHistoryController;
+use App\Http\Controllers\Frontend\HolidaylistController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\InfrastructureController as FrontendInfrastructureController;
+use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Frontend\layoutController;
+use App\Http\Controllers\Frontend\ManagingController;
 use App\Http\Controllers\Frontend\MissionvissionController;
 use App\Http\Controllers\Frontend\MpoinfoController;
 use App\Http\Controllers\Frontend\NoticeshowController;
+use App\Http\Controllers\Frontend\PDFViewController;
+use App\Http\Controllers\Frontend\PhotogallaryController;
 use App\Http\Controllers\Frontend\PresidentController;
+use App\Http\Controllers\Frontend\PrincipleController;
+use App\Http\Controllers\Frontend\ProspectsController as FrontendProspectsController;
+use App\Http\Controllers\Frontend\RcrescentController;
+use App\Http\Controllers\Frontend\RulesController;
+use App\Http\Controllers\Frontend\ScienceController;
+use App\Http\Controllers\Frontend\ScoutsController as FrontendScoutsController;
+use App\Http\Controllers\Frontend\SportsController as FrontendSportsController;
+use App\Http\Controllers\Frontend\StudentscabinetController;
+use App\Http\Controllers\Frontend\studentshowController;
+use App\Http\Controllers\Frontend\StudytourController as FrontendStudytourController;
+use App\Http\Controllers\Frontend\StuffsController;
+use App\Http\Controllers\Frontend\SuggestionController as FrontendSuggestionController;
+use App\Http\Controllers\Frontend\SyllabasController as FrontendSyllabasController;
+use App\Http\Controllers\Frontend\TeachersController;
 use App\Http\Controllers\Frontend\TeachingController as FrontendTeachingController;
+use App\Http\Controllers\Frontend\UniformController as FrontendUniformController;
+use App\Http\Controllers\Frontend\workingplanController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -85,9 +123,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index']) -> name('Home');
 Route::get('/Notice', [NoticeshowController::class, 'index']) -> name('Notice');
 Route::get('/layout', [layoutController::class, 'index']) -> name('Layout');
+Route::get('Notice/{category_id}', [NoticeshowController::class, 'showNoticesByCategory'])->name('Notice.by.category');
+
+Route::get('/view-pdf/{filename}', [PDFViewController::class, 'show'])->name('pdf.view');
+
+
 
 // About Section
-
 Route::get('/About_school', [FrontendAboutschoolController::class, 'index'])->name('About_School');
 Route::get('/Mission_vission', [MissionvissionController::class, 'index'])->name('Mission_vission');
 Route::get('/History', [FrontendHistoryController::class, 'index'])->name('History');
@@ -95,188 +137,65 @@ Route::get('/Citizen_charter', [CitizenController::class, 'index'])->name('Citiz
 Route::get('/Teaching_permission', [FrontendTeachingController::class, 'index'])->name('Teaching');
 Route::get('/Mpo_info', [MpoinfoController::class, 'index']);
 Route::get('/Infrastructure', [FrontendInfrastructureController::class, 'index']);
-Route::get('/Yearly_working_plan', function () {
-    return view('frontend.about.Yearly_working_plan');
-});
-Route::get('/Head_intro', function () {
-    return view('frontend.about.Head_intro');
-});
-Route::get('/Contact_us', function () {
-    return view('frontend.about.Contact_us');
-});
+Route::get('/Yearly_working_plan',[workingplanController::class, 'index'])->name('Yearly_working_plan');
+Route::get('/Head_intro', [HeadinfoController::class, 'index']);
+Route::get('/Contact_us', [FrontendContactController::class, 'index']);
+
 // Administrative information
-
 Route::get('/President_Message', [PresidentController::class, 'index']);
-
 Route::get('/Message_head', [HeadmessageController::class, 'index']);
-
-Route::get('/Managing_comittee', function () {
-    return view('frontend.administrative.Managing_comittee');
-});
-
-Route::get('/Chairman_list', function () {
-    return view('frontend.administrative.Chairman_list');
-});
-
-Route::get('/Principle_list', function () {
-    return view('frontend.administrative.Principle_list');
-});
-
-Route::get('/Donars_list', function () {
-    return view('frontend.administrative.Donars_list');
-});
-
-Route::get('/Ex_member_list', function () {
-    return view('frontend.administrative.Ex_member_list');
-});
+Route::get('/Managing_comittee', [ManagingController::class, 'index']);
+Route::get('/Chairman_list', [ChairmansController::class, 'index']);
+Route::get('/Principle_list', [PrincipleController::class, 'index']);
+Route::get('/Donars_list', [DonarsController::class, 'index']);
+Route::get('/Ex_member_list',[ExmemberController::class, 'index']);
 
 // Teacher & Staff
-
-Route::get('/Teacher_info', function () {
-    return view('frontend.teacher.Teacher_info');
-});
-
-Route::get('/Staff_info', function () {
-    return view('frontend.teacher.Staff_info');
-});
+Route::get('/Teacher_info', [TeachersController::class, 'index']);
+Route::get('/Staff_info', [StuffsController::class, 'index']);
 
 // Students
-
-Route::get('/gender_based', function () {
-    return view('frontend.students.gender_based');
-});
-
-Route::get('/class6', function () {
-    return view('frontend.students.class6');
-});
-
-Route::get('/class7', function () {
-    return view('frontend.students.class7');
-});
-
-Route::get('/class8', function () {
-    return view('frontend.students.class8');
-});
-
-Route::get('/class9', function () {
-    return view('frontend.students.class9');
-});
-
-Route::get('/class10', function () {
-    return view('frontend.students.class10');
-});
+Route::get('/navbar', [classmenuController::class, 'index'])->name('navbar');
+Route::get('/students', [studentshowController::class, 'index'])->name('students');
+Route::get('/students/{category_id}', [studentshowController::class, 'showStudents']);
 
 // Academic
-
-Route::get('/Holiday_list', function () {
-    return view('frontend.academic.Holiday_list');
-});
-
-Route::get('/Academic_Calender', function () {
-    return view('frontend.academic.Academic_Calender');
-});
-
-Route::get('/Class_routine', function () {
-    return view('frontend.academic.Class_routine');
-});
-
-Route::get('/Syllabas', function () {
-    return view('frontend.academic.Syllabas');
-});
-
-Route::get('/Rules_regulation', function () {
-    return view('frontend.academic.Rules_regulation');
-});
-
-Route::get('/Uniform', function () {
-    return view('frontend.academic.Uniform');
-});
-
-Route::get('/Fees', function () {
-    return view('frontend.academic.Fees');
-});
+Route::get('/Holiday_list', [HolidaylistController::class, 'index']);
+Route::get('/Academic_Calender',[AcalenderController::class, 'index']);
+Route::get('/Class_routine', [ClassroutineController::class, 'index']);
+Route::get('/Syllabas', [FrontendSyllabasController::class, 'index']);
+Route::get('/Rules_regulation',[RulesController::class,'index']);
+Route::get('/Uniform', [FrontendUniformController::class,'index']);
+Route::get('/Fees', [FrontendFeesController::class, 'index']);
 
 //Co-curricular
-
-Route::get('/Sports', function () {
-    return view('frontend.co-curricular.Sports');
-});
-
-Route::get('/Cultural_Activities', function () {
-    return view('frontend.co-curricular.Cultural_Activities');
-});
-
-Route::get('/Scouts', function () {
-    return view('frontend.co-curricular.Scouts');
-});
-
-Route::get('/Red_Crescent', function () {
-    return view('frontend.co-curricular.Red_Crescent');
-});
-
-Route::get('/Study_Tour', function () {
-    return view('frontend.co-curricular.Study_Tour');
-});
-
-Route::get('/Students_Cabinet', function () {
-    return view('frontend.co-curricular.Students_Cabinet');
-});
-
-Route::get('/Debate', function () {
-    return view('frontend.co-curricular.Debate');
-});
-
-Route::get('/Science_Fair', function () {
-    return view('frontend.co-curricular.Science_Fair');
-});
-
-Route::get('/Language_Club', function () {
-    return view('frontend.co-curricular.Language_Club');
-});
+Route::get('/Sports',[FrontendSportsController::class, 'index']);
+Route::get('/Cultural_Activities', [CultureController::class, 'index']);
+Route::get('/Scouts',[FrontendScoutsController::class, 'index']);
+Route::get('/Red_Crescent', [RcrescentController::class, 'index']);
+Route::get('/Study_Tour', [FrontendStudytourController::class, 'index']);
+Route::get('/Students_Cabinet', [StudentscabinetController::class, 'index']);
+Route::get('/Debate', [FrontendDebateController::class, 'index']);
+Route::get('/Science_Fair', [ScienceController::class, 'index']);
+Route::get('/Language_Club', [LanguageController::class, 'index']);
 
 // Admission
-
-Route::get('/Prospects', function () {
-    return view('frontend.admission.Prospects');
-});
-
-Route::get('/Admission_Rules', function () {
-    return view('frontend.admission.Admission_Rules');
-});
-
-Route::get('/Admission_Syllabus', function () {
-    return view('frontend.admission.Admission_Syllabus');
-});
-
-Route::get('/Admission_Result', function () {
-    return view('frontend.admission.Admission_Result');
-});
+Route::get('/Prospects', [FrontendProspectsController::class,'index']);
+Route::get('/Admission_Rules',[AdmissionrulesController::class, 'index']);
+Route::get('/Admission_Syllabus', [AdmissionsyllabusController::class, 'index']);
+Route::get('/Admission_Result', [AdmissionresultController::class, 'index']);
 
 // Exam
-
-Route::get('/Exam_rules', function () {
-    return view('frontend.exam.Exam_rules');
-});
-
-Route::get('/Exam_routine', function () {
-    return view('frontend.exam.Exam_routine');
-});
-
-Route::get('/Suggestion', function () {
-    return view('frontend.exam.Suggestion');
-});
+Route::get('/Exam_rules', [FrontendExamrulesController::class,'index']);
+Route::get('/Exam_routine', [FrontendExamroutineController::class, 'index']);
+Route::get('/Suggestion', [FrontendSuggestionController::class,'index']);
 
 // Result
-
-Route::get('/Class_Result', function () {
-    return view('frontend.result.Class_Result');
-});
+Route::get('/Class_Result',[FrontendClassresultController::class,'index']);
 
 // Gallery
 
-Route::get('/Photo_gallery', function () {
-    return view('frontend.gallery.Photo_gallery');
-});
+Route::get('/Photo_gallery', [PhotogallaryController::class, 'index'])->name('Photo_gallery');
 
 Route::get('/Video_gallery', function () {
     return view('frontend.gallery.Video_gallery');
@@ -304,6 +223,7 @@ Route::group (['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'],
 
     //Header
     Route::resource('slider', sliderController::class);
+    Route::resource('Description', DescriptionController::class);
 
     //Notice
     Route::resource('Ncatagory', NcatagoryController::class);
@@ -319,14 +239,13 @@ Route::group (['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'],
     Route::resource('Mpo', MpoController::class);
     Route::resource('Infrastructure', InfrastructureController::class);
     Route::resource('Yearlywork', YearlyworkController::class);
-
-    Route::resource('Headintro', HeadintroController::class);
     Route::resource('Contact', ContactController::class);
 
     // Administrative information
+    Route::resource('Headintro', HeadintroController::class);
+    Route::resource('Assheadintro', AssheadintroController::class);
     Route::resource('Presidentmsg', PresidentmsgController::class);
     Route::resource('Messagehead', MessageheadController::class);
-    
     Route::resource('Managingcom', ManagingcomController::class);
     Route::resource('Chairmanlist', ChairmanlistController::class);
     Route::resource('Principlelist', PrinciplelistController::class);
@@ -338,12 +257,9 @@ Route::group (['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'],
     Route::resource('Staff', StaffController::class);
 
     // Students
-    Route::resource('genderb', genderbController::class);
-    Route::resource('class6', class6Controller::class);
-    Route::resource('class7', class7Controller::class);
-    Route::resource('class8', class8Controller::class);
-    Route::resource('class9', class9Controller::class);
-    Route::resource('class10', class10Controller::class);
+    Route::resource('Classmake', classmakeController::class);
+    Route::resource('Sectionmake', sectionmakeController::class);
+    Route::resource('Students', StudentsController::class);
 
     // Academic
     Route::resource('Holiday', HolidayController::class);
@@ -383,13 +299,5 @@ Route::group (['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'],
     Route::resource('Photogal', PhotogalController::class);
     Route::resource('Videogal', VideogalController::class);
     Route::resource('Magazine', MagazineController::class);
-
-    //Notice
-    // Route::resource('Contact', ContactController::class);
-    // Route::resource('Contact', ContactController::class);
-    // Route::resource('Contact', ContactController::class);
-    // Route::resource('Contact', ContactController::class);
-    // Route::resource('Contact', ContactController::class);
-    // Route::resource('Contact', ContactController::class);
 
 });

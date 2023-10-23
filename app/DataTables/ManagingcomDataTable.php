@@ -72,6 +72,8 @@ class ManagingcomDataTable extends DataTable
             Column::make('image')->title('Photo')->width(100),
             Column::make('title')->title('Name'),
             Column::make('position')->title('Postion'),
+            Column::make('mobile')->title('Mobile'),
+            Column::make('email')->title('E-Mail'),
             Column::computed('action')
                   ->exportable(false)
                   ->printable(false)

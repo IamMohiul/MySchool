@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Frontend;
 
 use App\DataTables\NoticeshowDataTable;
 use App\Http\Controllers\Controller;
+use App\Models\Assheadintro;
+use App\Models\Headintro;
+use App\Models\NavigationMenu;
+use App\Models\Ncatagory;
 use App\Models\Notice;
 use App\Models\slider;
 use Illuminate\Http\Request;
@@ -18,7 +22,10 @@ class NoticeshowController extends Controller
     {
         $Notice = Notice::all();
         $slider = slider::all();
-        return view('frontend.pages.notice', compact('slider', 'Notice'));
+        $Headintro = Headintro::first();
+        $Assheadintro = Assheadintro::first();
+        $navigationMenus = NavigationMenu::all();
+        return view('frontend.pages.notice', compact('slider', 'Notice','Headintro','Assheadintro','navigationMenus'));
     }
 
 
@@ -34,6 +41,18 @@ class NoticeshowController extends Controller
         $Notice = Notice::all();
         return response()->download(public_path($Notice->file));
     }
+
+    public function showNoticesByCategory($categoryId)
+    {
+        $category = Ncatagory::findOrFail($categoryId); // Fetch the category by its ID
+        $Notice = Notice::where('category_id', $categoryId)->get(); // Get all notices for the specific category
+        $slider = slider::all();
+        $Headintro = Headintro::first();
+        $Assheadintro = Assheadintro::first();
+        $navigationMenus = NavigationMenu::all();
+        return view('frontend.pages.notice', compact('category', 'Notice', 'slider','Headintro','Assheadintro','navigationMenus'));
+    }
+
 
 }
 

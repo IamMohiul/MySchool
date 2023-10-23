@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Headintro extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'title',
+        'image',
+        'content',
+    ];
 }

@@ -81,6 +81,7 @@ class noticeController extends Controller
             'category_id' =>['required', 'numeric'],
             'npdf' => ['mimes:pdf,csv,xlsx,txt,docx,doc,xls']
         ]);
+        
         $Notice = Notice::findOrFail($id);
 
         // $filePath = handleUpload('npdf');

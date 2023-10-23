@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -12,7 +13,8 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
+        $Contact = Contact::first();
+        return view('admin.about.Contact.index', compact('Contact'));
     }
 
     /**
@@ -52,7 +54,23 @@ class ContactController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'content' => ['required','max:99999'],
+            'map' => ['url']
+        ]);
+
+
+        Contact::updateOrCreate(
+            ['id' => $id],
+            [
+                'content' => $request -> content,
+                'map' => $request->map,
+
+            ]
+        );
+
+        toastr()->success('Update successfully!', 'Congrats!');
+        return redirect()->back();
     }
 
     /**

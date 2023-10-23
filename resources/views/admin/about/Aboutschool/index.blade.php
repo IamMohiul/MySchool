@@ -4,7 +4,7 @@
 <section class="section">
     <div class="section-header">
       <div class="section-header-back">
-        <a href="features-posts.html" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
+        <a href="{{ url()->previous() }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
       </div>
       <h1>প্রতিষ্ঠান সম্পর্কে</h1>
     </div>
@@ -18,7 +18,7 @@
                 <form action="{{ route('admin.About_school.update',1) }}"  method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-                    
+
                     {{-- <div class="form-group row mb-4">
                         <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Title</label>
                         <div class="col-sm-12 col-md-7">
@@ -51,9 +51,9 @@
                             </div>
                         </div>
                     </div>
-        
+
                     <div class="form-group row mb-4">
-                      <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Content</label>
+                      <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Description</label>
                       <div class="col-sm-12 col-md-7">
                         <textarea type="text" name="content" id="" class="summernote" style="">{{$aboutschool->content}}</textarea>
                       </div>
